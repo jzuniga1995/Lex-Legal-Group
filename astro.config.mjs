@@ -1,12 +1,6 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://lotohn.com',
-  integrations: [tailwind()],
-  trailingSlash: "never",
-  build: {
-    format: 'file'
-  }
+  site: 'https://jzuniga1995.github.io',
+  base: '/Lex-Legal-Group',
 });
-

@@ -1,300 +1,240 @@
 ---
 // src/components/Header.astro
-import { Menu, Home, History } from 'lucide-astro';
-
-const currentPath = Astro.url.pathname;
-
-const isActive = (href: string) => {
-    if (href === '/') return currentPath === '/';
-    return currentPath.startsWith(href);
-};
 ---
 
-<nav class="bg-white shadow-lg sticky top-0 z-50 w-full">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="flex justify-between items-center py-3 gap-2">
+<header class="header" id="header">
+  <div class="container header__inner">
 
-            <!-- Logo -->
-            <a href="/" class="flex items-center gap-2 flex-shrink-0">
-                <svg class="w-8 h-8 text-purple-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="7" width="20" height="15" rx="2" ry="2"/>
-                    <polyline points="17 2 12 7 7 2"/>
-                    <circle cx="12" cy="14" r="3"/>
-                </svg>
-                <div class="text-left">
-                    <div class="text-xl font-black bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent tracking-tight leading-none">
-                        Loto<span class="text-yellow-500">HN</span>
-                    </div>
-                    <div class="text-[8px] text-gray-500 font-semibold tracking-wide hidden sm:block">Resultados actualizados</div>
-                </div>
-            </a>
+    <!-- Logo -->
+    <a href="#" class="header__logo">
+      <span class="logo__text">Lex Legal</span>
+      <span class="logo__group">Group</span>
+    </a>
 
-            <!-- ✅ SIGNOS PILL — siempre visible en móvil -->
-            <a
-                href="/signos-la-diaria"
-                class={`lg:hidden relative flex items-center gap-1 px-2.5 py-1.5 rounded-lg font-semibold overflow-hidden signos-link text-xs flex-shrink-0 ${
-                    isActive('/signos-la-diaria')
-                        ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white'
-                        : 'bg-gradient-to-r from-indigo-950 to-violet-950 text-yellow-300 border border-violet-700'
-                }`}
-            >
-                <span class="star-1">✦</span>
-                <span class="star-2">✧</span>
-                <span>🌙 Signos</span>
-                <span class="badge-new">NEW</span>
-            </a>
+    <!-- Nav desktop -->
+    <nav class="header__nav" aria-label="Main navigation">
+      <a href="#services" class="nav__link">Services</a>
+      <a href="#about" class="nav__link">About</a>
+      <a href="#testimonials" class="nav__link">Results</a>
+      <a href="#faq" class="nav__link">FAQ</a>
+      <a href="#contact" class="btn-primary nav__cta">Free Consultation</a>
+    </nav>
 
-            <!-- Botón hamburguesa (móvil) -->
-            <button id="menuBtn" class="lg:hidden flex-shrink-0 flex items-center px-3 py-2 border-2 border-violet-600 text-violet-600 rounded hover:bg-violet-50 transition-colors" aria-label="Menú">
-                <span id="menuIconWrapper">
-                    <Menu class="w-6 h-6" />
-                </span>
-            </button>
+    <!-- Hamburger mobile -->
+    <button class="header__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-            <!-- Menú desktop -->
-            <div class="hidden lg:flex items-center gap-2">
-                <a href="/" class={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg ${isActive('/') ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white' : 'bg-white text-gray-700 border border-gray-200 hover:bg-violet-50 hover:text-violet-700'}`}>
-                    <Home class="w-4 h-4" /><span>Inicio</span>
-                </a>
-                <a href="/juga-3" class={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all ${isActive('/juga-3') ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-200 hover:bg-violet-50 hover:text-violet-700'}`}>
-                    <span>Jugá 3</span>
-                </a>
-                <a href="/pega-3" class={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all ${isActive('/pega-3') ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-200 hover:bg-violet-50 hover:text-violet-700'}`}>
-                    <span>Pega 3</span>
-                </a>
-                <a href="/premia-2" class={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all ${isActive('/premia-2') ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-200 hover:bg-violet-50 hover:text-violet-700'}`}>
-                    <span>Premia 2</span>
-                </a>
-                <a href="/la-diaria" class={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all ${isActive('/la-diaria') ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-200 hover:bg-violet-50 hover:text-violet-700'}`}>
-                    <span>La Diaria</span>
-                </a>
-                <a href="/loto-super-premio" class={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all ${isActive('/loto-super-premio') ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-200 hover:bg-violet-50 hover:text-violet-700'}`}>
-                    <span>Súper Premio</span>
-                </a>
-                <!-- ✅ HISTORIAL -->
-                <a href="/historial" class={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all ${isActive('/historial') ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-200 hover:bg-violet-50 hover:text-violet-700'}`}>
-                    <History class="w-4 h-4" /><span>Historial</span>
-                </a>
-                <!-- ✅ SIGNOS DESKTOP -->
-                <a
-                    href="/signos-la-diaria"
-                    class={`relative flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all overflow-hidden signos-link ${
-                        isActive('/signos-la-diaria')
-                            ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md'
-                            : 'bg-gradient-to-r from-indigo-950 to-violet-950 text-yellow-300 border border-violet-700 hover:border-yellow-400 hover:shadow-[0_0_12px_rgba(250,204,21,0.3)]'
-                    }`}
-                >
-                    <span class="star-1">✦</span>
-                    <span class="star-2">✧</span>
-                    <span>🌙 Signos</span>
-                    <span class="badge-new">NUEVO</span>
-                </a>
-            </div>
-        </div>
+  </div>
 
-        <!-- Menú móvil desplegable -->
-        <div id="mobileMenu" class="hidden lg:hidden pb-4">
-            <div class="flex flex-col gap-2">
-                <a href="/" class={`flex items-center gap-2 px-4 py-3 rounded-lg font-semibold transition-all ${isActive('/') ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-violet-50 text-gray-700 hover:bg-violet-100'}`}>
-                    <Home class="w-4 h-4" /><span>Inicio</span>
-                </a>
-                <a href="/juga-3" class={`flex items-center gap-2 px-4 py-3 rounded-lg font-semibold transition-all ${isActive('/juga-3') ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-violet-50 text-gray-700 hover:bg-violet-100'}`}>
-                    <span>Jugá 3</span>
-                </a>
-                <a href="/pega-3" class={`flex items-center gap-2 px-4 py-3 rounded-lg font-semibold transition-all ${isActive('/pega-3') ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-violet-50 text-gray-700 hover:bg-violet-100'}`}>
-                    <span>Pega 3</span>
-                </a>
-                <a href="/premia-2" class={`flex items-center gap-2 px-4 py-3 rounded-lg font-semibold transition-all ${isActive('/premia-2') ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-violet-50 text-gray-700 hover:bg-violet-100'}`}>
-                    <span>Premia 2</span>
-                </a>
-                <a href="/la-diaria" class={`flex items-center gap-2 px-4 py-3 rounded-lg font-semibold transition-all ${isActive('/la-diaria') ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-violet-50 text-gray-700 hover:bg-violet-100'}`}>
-                    <span>La Diaria</span>
-                </a>
-                <a href="/loto-super-premio" class={`flex items-center gap-2 px-4 py-3 rounded-lg font-semibold transition-all ${isActive('/loto-super-premio') ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-violet-50 text-gray-700 hover:bg-violet-100'}`}>
-                    <span>Súper Premio</span>
-                </a>
-                <!-- ✅ HISTORIAL MÓVIL -->
-                <a href="/historial" class={`flex items-center gap-2 px-4 py-3 rounded-lg font-semibold transition-all ${isActive('/historial') ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-violet-50 text-gray-700 hover:bg-violet-100'}`}>
-                    <History class="w-4 h-4" /><span>Historial</span>
-                </a>
-                <a href="/signos-la-diaria" class={`relative flex items-center gap-2 px-4 py-3 rounded-lg font-semibold overflow-hidden signos-link transition-all ${isActive('/signos-la-diaria') ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-md' : 'bg-gradient-to-r from-indigo-950 to-violet-950 text-yellow-300 border border-violet-700'}`}>
-                    <span>🌙 Signos La Diaria</span>
-                    <span class="badge-new">NUEVO</span>
-                </a>
-            </div>
-        </div>
-    </div>
-</nav>
-
-<!-- ✅ TOAST -->
-<div id="signos-toast" class="signos-toast">
-    <div class="toast-inner">
-        <span class="toast-icon">🌙</span>
-        <div class="toast-body">
-            <strong>¿Sabías que puedes convertir tus sueños en números?</strong>
-            <span>Consulta la tabla completa de los 100 signos de La Diaria →</span>
-        </div>
-        <a href="/signos-la-diaria" class="toast-cta">Ver Signos</a>
-        <button class="toast-close" id="toast-close-btn" aria-label="Cerrar">✕</button>
-    </div>
-    <div class="toast-progress"></div>
-</div>
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="#services" class="mobile-menu__link">Services</a>
+    <a href="#about" class="mobile-menu__link">About</a>
+    <a href="#testimonials" class="mobile-menu__link">Results</a>
+    <a href="#faq" class="mobile-menu__link">FAQ</a>
+    <a href="#contact" class="mobile-menu__link mobile-menu__cta">Free Consultation</a>
+  </div>
+</header>
 
 <style>
-  .signos-link .star-1,
-  .signos-link .star-2 {
-    position: absolute;
-    font-size: 8px;
-    color: #fbbf24;
-    pointer-events: none;
-    animation: twinkle 2s ease-in-out infinite;
-  }
-  .signos-link .star-1 { top: 3px;    left: 6px;   animation-delay: 0s;   }
-  .signos-link .star-2 { bottom: 3px; right: 28px; animation-delay: 0.7s; font-size: 6px; opacity: 0.7; }
-
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.2; transform: scale(0.8); }
-    50%       { opacity: 1;   transform: scale(1.3); }
-  }
-
-  .badge-new {
-    font-size: 8px;
-    font-weight: 900;
-    letter-spacing: 0.06em;
-    background: #fbbf24;
-    color: #1e0a3c;
-    padding: 1px 4px;
-    border-radius: 4px;
-    line-height: 1.4;
-    flex-shrink: 0;
-    animation: pulse-badge 1.8s ease-in-out infinite;
-  }
-
-  @keyframes pulse-badge {
-    0%, 100% { opacity: 1;   transform: scale(1);    }
-    50%       { opacity: 0.7; transform: scale(0.95); }
-  }
-
-  .signos-toast {
+  .header {
     position: fixed;
-    bottom: 16px;
-    left: 16px;
-    right: 16px;
-    z-index: 9999;
-    background: linear-gradient(135deg, #0f0320 0%, #1a0535 60%, #0d0a2e 100%);
-    border: 1px solid rgba(167, 139, 250, 0.5);
-    border-radius: 14px;
-    box-shadow: 0 8px 32px rgba(109, 40, 217, 0.4), 0 2px 8px rgba(0,0,0,0.5);
-    overflow: hidden;
-    transform: translateY(calc(100% + 24px));
-    opacity: 0;
-    transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1), opacity 0.4s ease;
-    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.5rem 0;
+    transition: background 0.4s ease, padding 0.4s ease, border-bottom 0.4s ease;
+    border-bottom: 1px solid transparent;
   }
 
-  @media (min-width: 480px) {
-    .signos-toast {
-      left: auto;
-      right: 20px;
-      width: 360px;
-      bottom: 24px;
-    }
+  .header.scrolled {
+    background: rgba(17, 17, 17, 0.96);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(191, 169, 128, 0.15);
   }
 
-  .signos-toast.show { transform: translateY(0); opacity: 1; pointer-events: all; }
-  .signos-toast.hide { transform: translateY(calc(100% + 24px)); opacity: 0; pointer-events: none; }
-
-  .toast-inner { display: flex; align-items: center; gap: 10px; padding: 14px 14px 10px 14px; }
-  .toast-icon { font-size: 26px; flex-shrink: 0; animation: moon-float 3s ease-in-out infinite; }
-
-  @keyframes moon-float {
-    0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50%       { transform: translateY(-4px) rotate(5deg); }
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  .toast-body { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
-  .toast-body strong { font-size: 12px; color: #e9d5ff; font-weight: 700; line-height: 1.3; display: block; }
-  .toast-body span   { font-size: 11px; color: #a78bfa; line-height: 1.3; }
-
-  .toast-cta {
-    flex-shrink: 0;
-    background: #fbbf24;
-    color: #1e0a3c;
-    font-size: 11px;
-    font-weight: 900;
-    padding: 5px 10px;
-    border-radius: 7px;
-    text-decoration: none;
-    letter-spacing: 0.03em;
-    transition: background 0.2s;
-    white-space: nowrap;
+  /* Logo */
+  .header__logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    gap: 1px;
   }
-  .toast-cta:hover { background: #f59e0b; }
 
-  .toast-close {
-    flex-shrink: 0;
+  .logo__text {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--color-text);
+    letter-spacing: 0.05em;
+  }
+
+  .logo__group {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  /* Nav */
+  .header__nav {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .nav__link {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    transition: color 0.2s ease;
+    position: relative;
+  }
+
+  .nav__link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-accent);
+    transition: width 0.3s ease;
+  }
+
+  .nav__link:hover {
+    color: var(--color-text);
+  }
+
+  .nav__link:hover::after {
+    width: 100%;
+  }
+
+  .nav__cta {
+    padding: 0.6rem 1.4rem;
+    font-size: 0.7rem;
+  }
+
+  /* Burger */
+  .header__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
     background: none;
     border: none;
-    color: #6b7280;
-    font-size: 13px;
     cursor: pointer;
-    padding: 2px 4px;
-    line-height: 1;
+    padding: 4px;
+  }
+
+  .header__burger span {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--color-text);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .header__burger.active span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .header__burger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .header__burger.active span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    background: rgba(17, 17, 17, 0.98);
+    padding: 1rem 0 2rem;
+    border-top: 1px solid rgba(191, 169, 128, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .mobile-menu.open {
+    max-height: 400px;
+  }
+
+  .mobile-menu__link {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    padding: 1rem 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
     transition: color 0.2s;
   }
-  .toast-close:hover { color: #e9d5ff; }
 
-  .toast-progress { height: 3px; background: linear-gradient(90deg, #7c3aed, #fbbf24); transform-origin: left; transform: scaleX(1); }
-  .signos-toast.show .toast-progress { animation: progress-shrink 30s linear forwards; }
+  .mobile-menu__link:hover {
+    color: var(--color-text);
+  }
 
-  @keyframes progress-shrink {
-    from { transform: scaleX(1); }
-    to   { transform: scaleX(0); }
+  .mobile-menu__cta {
+    color: var(--color-accent);
+    border-bottom: none;
+    margin-top: 0.5rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header__nav { display: none; }
+    .header__burger { display: flex; }
+    .mobile-menu { display: flex; }
   }
 </style>
 
 <script>
-    const menuBtn         = document.getElementById('menuBtn');
-    const mobileMenu      = document.getElementById('mobileMenu');
-    const menuIconWrapper = document.getElementById('menuIconWrapper');
-    const ICON_CLOSE = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
-    const ICON_OPEN  = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>';
+  const header  = document.getElementById('header');
+  const burger  = document.getElementById('burger');
+  const menu    = document.getElementById('mobileMenu');
+  const links   = document.querySelectorAll('.mobile-menu__link');
 
-    let isOpen = false;
+  // Scroll effect
+  window.addEventListener('scroll', () => {
+    header?.classList.toggle('scrolled', window.scrollY > 40);
+  });
 
-    if (menuBtn && mobileMenu && menuIconWrapper) {
-        menuBtn.addEventListener('click', () => {
-            isOpen = !isOpen;
-            mobileMenu.classList.toggle('hidden');
-            menuIconWrapper.innerHTML = isOpen ? ICON_CLOSE : ICON_OPEN;
-        });
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                isOpen = false;
-                mobileMenu.classList.add('hidden');
-                menuIconWrapper.innerHTML = ICON_OPEN;
-            });
-        });
-    }
+  // Toggle mobile menu
+  burger?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('open');
+    burger.classList.toggle('active', isOpen);
+    burger.setAttribute('aria-expanded', String(isOpen));
+    menu?.setAttribute('aria-hidden', String(!isOpen));
+  });
 
-    const toast     = document.getElementById('signos-toast');
-    const closeBtn  = document.getElementById('toast-close-btn');
-    const TOAST_KEY = 'signos_toast_seen';
-    const isHomePage = window.location.pathname === '/';
-
-    function hideToast() {
-        toast?.classList.remove('show');
-        toast?.classList.add('hide');
-    }
-
-    if (toast && isHomePage && !sessionStorage.getItem(TOAST_KEY)) {
-        setTimeout(() => {
-            toast.classList.add('show');
-            sessionStorage.setItem(TOAST_KEY, '1');
-        }, 2000);
-        setTimeout(hideToast, 32000);
-        closeBtn?.addEventListener('click', hideToast);
-        toast.querySelector('.toast-cta')?.addEventListener('click', hideToast);
-    }
+  // Close on link click
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      menu?.classList.remove('open');
+      burger?.classList.remove('active');
+      burger?.setAttribute('aria-expanded', 'false');
+      menu?.setAttribute('aria-hidden', 'true');
+    });
+  });
 </script>
-
